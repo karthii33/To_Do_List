@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile | NexTask</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<style>
+:root {
+    /* Light Mode Palette (Default) */
+    --bg-gradient: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+    --card-bg: hsla(0, 0%, 100%, 0.4);
+    --text-color: #1a1a2e;
+    --text-muted: #5a5a78;
+    --accent-gradient: linear-gradient(45deg, #6a11cb 0%, #2575fc 100%);
+    --danger-gradient: linear-gradient(45deg, #ff5f6d 0%, #ffc371 100%);
+    --shadow-color: rgba(0, 0, 0, 0.08);
+    --border-color: hsla(0, 0%, 100%, 0.6);
+    --input-bg: hsla(0, 0%, 100%, 0.5);
+
+    --border-radius-lg: 20px;
+    --border-radius-md: 12px;
+    --transition-speed: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Dark Mode Palette (Applied when body has the .dark class) */
+body.dark {
+    --bg-gradient: linear-gradient(120deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+    --card-bg: hsla(240, 10%, 20%, 0.4);
+    --text-color: #f0f0f5;
+    --text-muted: #a0a0b8;
+    --shadow-color: rgba(0, 0, 0, 0.2);
+    --border-color: hsla(240, 10%, 25%, 0.5);
+    --input-bg: hsla(240, 10%, 22%, 0.5);
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--bg-gradient);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+    transition: var(--transition-speed);
+}
+
+/* --- Profile Card --- */
+.profile-card {
+    width: 100%;
+    max-width: 450px;
+    background: var(--card-bg);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: var(--border-radius-lg);
+    padding: 40px;
+    box-shadow: 0 15px 35px var(--shadow-color);
+    border: 1px solid var(--border-color);
+    text-align: center;
+}
+
+/* --- Profile Header --- */
+.profile-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.profile-image-wrapper {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    background: var(--accent-gradient);
+    padding: 6px; /* This creates the gradient border */
+    box-shadow: 0 5px 15px var(--shadow-color);
+    margin-bottom: 20px;
+}
+
+.profile-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--card-bg); /* Inner border to separate from gradient */
+}
+
+.profile-header h2 {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.profile-header p {
+    margin: 5px 0 0;
+    color: var(--text-muted);
+    font-size: 1rem;
+}
+
+/* --- Profile Details & Stats --- */
+.profile-details {
+    margin-bottom: 30px;
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+.profile-details strong {
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+.task-summary {
+    background: var(--input-bg);
+    padding: 15px;
+    border-radius: var(--border-radius-md);
+    margin-bottom: 30px;
+    font-weight: 500;
+}
+.task-summary span {
+    font-weight: 700;
+    font-size: 1.2rem;
+    background: var(--danger-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+}
+
+/* --- Action Buttons --- */
+.profile-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.btn {
+    display: block;
+    text-decoration: none;
+    color: white;
+    padding: 14px;
+    border-radius: var(--border-radius-md);
+    font-weight: 600;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.btn-primary {
+    background-image: var(--accent-gradient);
+}
+.btn-secondary {
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+}
+.btn-danger {
+    background-image: var(--danger-gradient);
+}
+</style>
+<body class="dark">
+
+<div class="profile-card">
+    <div class="profile-header">
+        <div class="profile-image-wrapper">
+            <img src="{{ user['profile_pic'] or '/static/default.png' }}" alt="Profile Picture">
+        </div>
+        <h2>{{ user['name'] }}</h2>
+        <p>{{ user['email'] }}</p>
+    </div>
+
+    <div class="profile-details">
+        <p>
+            <strong>Bio:</strong>
+            <em>{{ user['bio'] or 'This user prefers to keep an air of mystery.' }}</em>
+        </p>
+    </div>
+
+    <div class="task-summary">
+        You have <span>{{ pending }}</span> pending task{{ 's' if pending != 1 else '' }}
+    </div>
+
+    <div class="profile-actions">
+        <a href="/edit_profile" class="btn btn-primary">✏️ Edit Profile</a>
+        <a href="/" class="btn btn-secondary">🏠 Back to Tasks</a>
+        <a href="/logout" class="btn btn-danger">🚪 Logout</a>
+    </div>
+</div>
+
+</body>
+</html>

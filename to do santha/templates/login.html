@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login | NexTask</title>
+
+  <!-- Inter Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            'dark-bg-start': '#05031a',
+            'dark-bg-mid': '#1a183d',
+            'dark-bg-end': '#101020',
+            'dark-card-bg': 'hsla(240, 10%, 15%, 0.7)',
+            'dark-text': '#f0f0f5',
+            'dark-muted': '#a0a0b8',
+            'dark-border': 'hsla(240, 10%, 20%, 0.6)',
+            'dark-input-bg': 'hsla(240, 10%, 18%, 0.6)',
+            'accent-start': '#6a11cb',
+            'accent-end': '#2575fc',
+          }
+        }
+      }
+    };
+  </script>
+</head>
+
+<body class="dark font-sans bg-gradient-to-br from-dark-bg-start via-dark-bg-mid to-dark-bg-end text-dark-text
+             flex justify-center items-center min-h-screen p-5 transition-all duration-300 ease-in-out">
+
+  <div class="w-full max-w-md bg-dark-card-bg backdrop-blur-lg rounded-2xl p-10
+              shadow-2xl border border-dark-border text-center">
+    <h2 class="mb-8 text-4xl font-bold text-dark-text">Login to NexTask</h2>
+
+    <form method="POST" class="space-y-5">
+      <input name="email" type="email" placeholder="Email" required
+             class="w-full p-3 border border-dark-border rounded-xl bg-dark-input-bg
+                    text-dark-text placeholder-dark-muted text-base
+                    focus:outline-none focus:border-dark-text focus:shadow-[0_0_0_2px_rgba(37,117,252,0.3)]" />
+
+      <input type="password" name="password" placeholder="Password" required
+             class="w-full p-3 border border-dark-border rounded-xl bg-dark-input-bg
+                    text-dark-text placeholder-dark-muted text-base
+                    focus:outline-none focus:border-dark-text focus:shadow-[0_0_0_2px_rgba(37,117,252,0.3)]" />
+
+      <button type="submit"
+              class="w-full bg-gradient-to-r from-accent-start to-accent-end text-white p-3 rounded-xl font-semibold
+                     transition-transform duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg">
+        Login
+      </button>
+    </form>
+
+    <a href="/signup"
+       class="block mt-4 w-full border border-dark-border text-dark-text bg-dark-input-bg p-3 rounded-xl font-semibold
+              transition-transform duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg">
+      Create an account
+    </a>
+  </div>
+
+</body>
+</html>
