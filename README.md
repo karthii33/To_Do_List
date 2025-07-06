@@ -43,5 +43,5 @@ NexTask is a full-stack web application built with **Flask**, **MongoDB**, and *
 ### 1. Clone the Repo
 
 ```bash
-git clone https://github.com/YOUR-USERNAME/nextask.git
+git clone https://github.com/karthii33/nextask.git
 cd nextask
